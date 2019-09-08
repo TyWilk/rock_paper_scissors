@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <script>
+
+            let computerPlay;
+            let playerPlay;
+            let winner;
+            let playerWins = 0;
+            let computerWins = 0;
+
+            function computerChoice() {
+                let num = Math.floor(Math.random() * 10);
+                if (num <= 3) {
+                    computerPlay = "rock";
+                } else if (num > 3 && num <= 6) {
+                    computerPlay = "paper";
+                } else {
+                    computerPlay = "scissors";
+                }
+            }
+
+            function playerChoice() {
+                let rawChoice = prompt("Rock, Paper, or Scissors?");
+                playerPlay = rawChoice.toLowerCase();
+            }
+            
+            function playRound() {
+                if (playerPlay === "rock") {
+                    switch(computerPlay) {
+                        case "rock":
+                            winner = "draw";
+                            break;
+                        case "paper":
+                            winner = "computer";
+                            computerWins++;
+                            break;
+                        case "scissors":
+                            winner = "player";
+                            playerWins++;
+                            break;
+                    }
+                } else if (playerPlay === "paper") {
+                    switch(computerPlay) {
+                        case "rock":
+                            winner = "player"; 
+                            playerWins++;
+                            break;
+                        case "paper":
+                            winner = "draw";
+                            break;
+                        case "scissors":
+                            winner = "computer";
+                            computerWins++;
+                            break;
+                    }
+                } else if (playerPlay === "scissors") {
+                    switch(computerPlay) {
+                        case "rock":
+                            winner = "computer";
+                            computerWins++;
+                            break;
+                        case "paper":
+                            winner = "player";
+                            playerWins++;
+                            break;
+                        case "scissors":
+                            winner = "draw";
+                            break;                      
+                    }
+                }                        
+            }
+
+            function game() {
+                for (i = 0; i < 5; i++) {
+                    computerChoice();
+                    playerChoice();
+                    playRound();
+                    console.log(`Computer plays ${computerPlay}. Player plays ${playerPlay}. Game ${i + 1} winner: ${winner}`);
+                }
+                if (playerWins > computerWins) {
+                    console.log("Player Wins!");
+                } else if (computerWins > playerWins) {
+                    console.log("Computer Wins!");
+                } else {
+                    console.log("Draw");
+                }
+            }
+
+            game();   
+
+        </script>
+    </body>
+</html>
