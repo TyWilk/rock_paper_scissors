@@ -70,7 +70,8 @@ function playRound() {
         }
     }
     display.innerHTML = `First to five wins!<br>
-                        Player plays: ${playerPlay}. Computer plays: ${computerPlay}. <b>Winner: ${winner}</b>.<br>
+                        Player plays: ${playerPlay}. Computer plays: ${computerPlay}.<br>
+                        <b>Winner: ${winner}</b>.<br>
                         Player: ${playerWins}<br>
                         Computer: ${computerWins}`;
     if (playerWins == 5) {
